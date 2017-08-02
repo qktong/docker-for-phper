@@ -1,0 +1,9 @@
+docker run --name qktong-php -d \
+-v ~/www/tmp/www:/data/www \
+qktong/php-fpm
+
+docker run --name qktong-nginx -p 8080:80 -d \
+-v ~/www/tmp/www:/usr/local/nginx/html \
+-v ~/www/tmp/docker/nginx/conf:/usr/local/nginx/conf \
+--link qktong-php:php \
+qktong/nginx
